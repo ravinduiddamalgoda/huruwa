@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { useTheme } from "../lib/theme";
+import HuruwaLogo from "../components/HuruwaLogo";
 import Fish1 from "../asset/1.jpeg";
 import Fish2 from "../asset/2.jpeg";
 import Fish3 from "../asset/3.jpeg";
@@ -151,14 +152,14 @@ const scopeCards = [
 ];
 
 const milestones = [
-  { tag: "Sep 2025", title: "Project Proposal", body: "Presented to potential sponsors and clients to receive funding and approval.", marks: 6 },
-  { tag: "Jan 2026", title: "Progress Presentation 1", body: "Reviews the 50% completion status of the project.", marks: 15 },
-  { tag: "Mar 2026", title: "Progress Presentation 2", body: "Reviews the 90% completion status with demonstrations.", marks: 18 },
-  { tag: "Apr 2026", title: "Website Assessment", body: "A website to promote the research project and share related information.", marks: 2 },
-  { tag: "May 2026", title: "Final Report", body: "Individual and group reports containing details of the completed project.", marks: 19 },
-  { tag: "May 2026", title: "Final Presentation & Viva", body: "Final presentation and viva to assess each member individually.", marks: 20 },
-  { tag: "May 2026", title: "Logbook", body: "Project status and completion log.", marks: 2 },
-  { tag: "May 2026", title: "Research Paper", body: "Research paper based on the completed project.", marks: 10 },
+  { tag: "Sep 2025", title: "Project Proposal", body: "Presented to potential sponsors and clients to receive funding and approval." },
+  { tag: "Jan 2026", title: "Progress Presentation 1", body: "Reviews the 50% completion status of the project." },
+  { tag: "Mar 2026", title: "Progress Presentation 2", body: "Reviews the 90% completion status with demonstrations." },
+  { tag: "Apr 2026", title: "Website Assessment", body: "A website to promote the research project and share related information." },
+  { tag: "May 2026", title: "Final Report", body: "Individual and group reports containing details of the completed project." },
+  { tag: "May 2026", title: "Final Presentation & Viva", body: "Final presentation and viva to assess each member individually." },
+  { tag: "May 2026", title: "Logbook", body: "Project status and completion log." },
+  { tag: "May 2026", title: "Research Paper", body: "Research paper based on the completed project." },
 ];
 
 const team = [
@@ -187,16 +188,16 @@ export default function Home() {
   const { theme, toggle } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const fishImages = [Fish1, Fish2, Fish3, Fish4];
-  const [currentFish, setCurrentFish] = useState(0);
+  const showcaseImages = [Fish1, Fish2, Fish3, Fish4];
+  const [currentShowcase, setCurrentShowcase] = useState(0);
 
   useEffect(() => {
     const t = setTimeout(
-      () => setCurrentFish((p) => (p + 1) % fishImages.length),
+      () => setCurrentShowcase((p) => (p + 1) % showcaseImages.length),
       4500
     );
     return () => clearTimeout(t);
-  }, [currentFish, fishImages.length]);
+  }, [currentShowcase, showcaseImages.length]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -224,10 +225,7 @@ export default function Home() {
       >
         <div className="container-tight flex items-center justify-between py-4">
           <a href="#home" className="group flex items-center gap-2.5">
-            <span className="relative grid h-10 w-10 place-items-center rounded-2xl bg-gradient-to-br from-brand-500 via-brand-600 to-accent-500 text-white shadow-glow">
-              <span className="font-display text-lg font-bold">හු</span>
-              <span className="absolute inset-0 rounded-2xl ring-1 ring-white/40" />
-            </span>
+            <HuruwaLogo className="h-10 w-10 drop-shadow-[0_8px_20px_rgba(59,130,246,0.35)]" />
             <span className="flex flex-col leading-none">
               <span className="font-display text-lg font-bold tracking-tight text-slate-900 dark:text-white">
                 Huruwa
@@ -426,9 +424,9 @@ export default function Home() {
                 <div className="relative h-full w-full overflow-hidden rounded-[2.25rem] border border-white/40 bg-white/40 shadow-card backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/30">
                   <AnimatePresence mode="wait">
                     <motion.img
-                      key={currentFish}
-                      src={fishImages[currentFish].src}
-                      alt={`Showcase ${currentFish + 1}`}
+                      key={currentShowcase}
+                      src={showcaseImages[currentShowcase].src}
+                      alt={`Huruwa showcase ${currentShowcase + 1}`}
                       className="absolute inset-0 h-full w-full object-cover"
                       initial={{ opacity: 0, scale: 1.06 }}
                       animate={{ opacity: 1, scale: 1 }}
@@ -1019,16 +1017,13 @@ export default function Home() {
                 <motion.li key={m.title + i} className="relative pl-16" variants={fadeInUp}>
                   <span className="timeline-dot">{m.tag.split(" ")[0]}</span>
                   <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-card dark:border-slate-800 dark:bg-slate-900/60">
-                    <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div className="flex flex-wrap items-start gap-3">
                       <div>
                         <h3 className="font-display text-lg font-bold text-slate-900 dark:text-white">
                           {m.title}
                         </h3>
                         <p className="text-xs font-medium text-slate-400 dark:text-slate-500">{m.tag}</p>
                       </div>
-                      <span className="rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700 dark:bg-brand-500/15 dark:text-brand-200">
-                        Marks: {m.marks}
-                      </span>
                     </div>
                     <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">{m.body}</p>
                   </div>
@@ -1242,9 +1237,7 @@ export default function Home() {
           <div className="grid gap-10 md:grid-cols-4">
             <div className="md:col-span-2">
               <div className="flex items-center gap-2.5">
-                <span className="grid h-10 w-10 place-items-center rounded-2xl bg-gradient-to-br from-brand-500 via-brand-600 to-accent-500 text-white shadow-glow">
-                  <span className="font-display text-lg font-bold">හු</span>
-                </span>
+                <HuruwaLogo className="h-10 w-10 drop-shadow-[0_8px_20px_rgba(59,130,246,0.35)]" />
                 <div className="flex flex-col leading-none">
                   <span className="font-display text-lg font-bold text-white">
                     Huruwa

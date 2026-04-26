@@ -21,7 +21,8 @@ export default function Document() {
           name="description"
           content="Huruwa (හුරුව) — An AI-IoT robotic system for adaptive Sinhala speech therapy and parental support."
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
+        <link rel="shortcut icon" type="image/svg+xml" href="/favicon.svg?v=2" />
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </Head>
       <body className="antialiased bg-background text-foreground">
