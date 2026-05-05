@@ -11,6 +11,8 @@ import Member1 from "../asset/team/1.jpeg";
 import Member2 from "../asset/team/2.png";
 import Member3 from "../asset/team/3.jpeg";
 import Member4 from "../asset/team/4.jpeg";
+import SupervisorSamantha from "../asset/prof_samantha_sir.png";
+import SupervisorAnjana from "../asset/ldr_anjana_sir.png";
 
 const easeOut: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -162,11 +164,29 @@ const milestones = [
   { tag: "May 2026", title: "Research Paper", body: "Research paper based on the completed project." },
 ];
 
+const supervisors = [
+  { img: SupervisorSamantha, name: "Prof. Samantha Thelijjagoda", role: "Research Supervisor" },
+  { img: SupervisorAnjana, name: "Dr. Jenius Anjana", role: "Co-Supervisor" },
+];
+
 const team = [
   { img: Member1, name: "Divyani Piyathilake", role: "AI Therapy & Support Engineer" },
   { img: Member2, name: "Harshana Abeyrathne", role: "Mobile & RAG Engineer" },
   { img: Member3, name: "Dilum Pallebathagala", role: "Speech Recognition & ML Lead" },
   { img: Member4, name: "Ravindu Iddamalgoda", role: "IoT & Robotics Lead" },
+];
+
+const technologies = [
+  { name: "Python", category: "AI / ML" },
+  { name: "PyTorch", category: "AI / ML" },
+  { name: "LangChain", category: "AI / ML" },
+  { name: "OpenAI", category: "AI / ML" },
+  { name: "LLM", category: "AI / ML" },
+  { name: "Machine Learning", category: "AI / ML" },
+  { name: "Coqui TTS", category: "Audio" },
+  { name: "Flutter", category: "Mobile" },
+  { name: "Raspberry Pi", category: "IoT" },
+  { name: "ESP32", category: "IoT" },
 ];
 
 const presentations = [
@@ -180,6 +200,8 @@ const documents = [
   { label: "Topic Assessment — June 2025", url: "https://drive.google.com/file/d/1nSsij8NroVXbRVBGhBB3heETG9iFjYy0/view?usp=sharing" },
   { label: "Project Proposal — September 2025", url: "https://drive.google.com/drive/folders/1P9mFB-2cm0Im-aDjtavJyUQJFdDPQAcW?usp=sharing" },
   { label: "Research Paper — April 2026", url: "https://drive.google.com/file/d/15FKfdFjwk3nsGXlNZEYEMPqB0fILFNh2/view?usp=sharing" },
+  { label: "Project Checklist 1", url: "/checklist-1/README.md" },
+  { label: "Project Checklist 2 — MS Planner", url: "/checklist-2/HURUWA-MSPlanner.xlsx" },
   { label: "Final Report — Pending", url: null },
   { label: "Poster — Pending", url: null },
 ];
@@ -854,6 +876,50 @@ export default function Home() {
         </div>
       </motion.section>
 
+      {/* TECHNOLOGIES */}
+      <motion.section
+        id="technologies"
+        className="relative bg-slate-50/60 py-24 dark:bg-slate-900/40 md:py-32"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeInUp}
+      >
+        <div className="container-tight">
+          <div className="mx-auto max-w-3xl text-center">
+            <span className="section-eyebrow">Tech Stack</span>
+            <h2 className="mt-5 font-display text-4xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl">
+              Technologies we use
+            </h2>
+            <p className="mt-5 text-lg text-slate-600 dark:text-slate-300">
+              A carefully selected set of modern tools and frameworks powering every layer of Huruwa.
+            </p>
+          </div>
+
+          <div className="mt-14 flex flex-wrap justify-center gap-3">
+            {technologies.map((tech) => {
+              const categoryColour: Record<string, string> = {
+                "AI / ML": "bg-brand-100 text-brand-700 border-brand-200 dark:bg-brand-500/15 dark:text-brand-200 dark:border-brand-500/30",
+                "Audio": "bg-accent-100 text-accent-600 border-accent-200 dark:bg-accent-500/15 dark:text-accent-300 dark:border-accent-500/30",
+                "Mobile": "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-500/15 dark:text-emerald-300 dark:border-emerald-500/30",
+                "IoT": "bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-500/15 dark:text-orange-300 dark:border-orange-500/30",
+              };
+              const colour = categoryColour[tech.category] ?? "bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:border-slate-700";
+              return (
+                <motion.div
+                  key={tech.name}
+                  variants={fadeInUp}
+                  className={`flex flex-col items-center gap-1 rounded-2xl border px-6 py-4 shadow-sm transition-all hover:-translate-y-1 hover:shadow-card ${colour}`}
+                >
+                  <span className="font-display text-sm font-bold">{tech.name}</span>
+                  <span className="text-[10px] font-medium uppercase tracking-widest opacity-70">{tech.category}</span>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </motion.section>
+
       {/* SCOPE */}
       <motion.section
         id="scope"
@@ -1106,31 +1172,70 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {team.map((m) => (
-              <motion.div
-                key={m.name}
-                variants={fadeInUp}
-                whileHover={{ y: -6 }}
-                className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-5 shadow-card transition-all duration-500 hover:shadow-card-hover dark:border-slate-800 dark:bg-slate-900/60"
-              >
-                <div className="relative mx-auto h-44 w-44 overflow-hidden rounded-2xl bg-slate-100">
-                  <Image
-                    src={m.img}
-                    alt={m.name}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 640px) 100vw, 25vw"
-                  />
-                </div>
-                <h4 className="mt-5 text-center font-display text-lg font-bold text-slate-900 dark:text-white">
-                  {m.name}
-                </h4>
-                <p className="mt-1 text-center text-xs font-medium uppercase tracking-widest text-brand-600">
-                  {m.role}
-                </p>
-              </motion.div>
-            ))}
+          {/* Supervisors */}
+          <div className="mt-14">
+            <h3 className="mb-8 text-center font-display text-2xl font-bold text-slate-900 dark:text-white">
+              Research Supervisors
+            </h3>
+            <div className="mx-auto flex max-w-2xl flex-wrap justify-center gap-6 sm:grid sm:grid-cols-2">
+              {supervisors.map((m) => (
+                <motion.div
+                  key={m.name}
+                  variants={fadeInUp}
+                  whileHover={{ y: -6 }}
+                  className="group relative overflow-hidden rounded-3xl border border-brand-200 bg-white p-5 shadow-card transition-all duration-500 hover:shadow-card-hover dark:border-brand-500/30 dark:bg-slate-900/60"
+                >
+                  <div className="relative mx-auto h-44 w-44 overflow-hidden rounded-2xl bg-slate-100">
+                    <Image
+                      src={m.img}
+                      alt={m.name}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                    />
+                  </div>
+                  <h4 className="mt-5 text-center font-display text-lg font-bold text-slate-900 dark:text-white">
+                    {m.name}
+                  </h4>
+                  <p className="mt-1 text-center text-xs font-medium uppercase tracking-widest text-brand-600">
+                    {m.role}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Team Members */}
+          <div className="mt-16">
+            <h3 className="mb-8 text-center font-display text-2xl font-bold text-slate-900 dark:text-white">
+              Team Members
+            </h3>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {team.map((m) => (
+                <motion.div
+                  key={m.name}
+                  variants={fadeInUp}
+                  whileHover={{ y: -6 }}
+                  className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-5 shadow-card transition-all duration-500 hover:shadow-card-hover dark:border-slate-800 dark:bg-slate-900/60"
+                >
+                  <div className="relative mx-auto h-44 w-44 overflow-hidden rounded-2xl bg-slate-100">
+                    <Image
+                      src={m.img}
+                      alt={m.name}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 640px) 100vw, 25vw"
+                    />
+                  </div>
+                  <h4 className="mt-5 text-center font-display text-lg font-bold text-slate-900 dark:text-white">
+                    {m.name}
+                  </h4>
+                  <p className="mt-1 text-center text-xs font-medium uppercase tracking-widest text-brand-600">
+                    {m.role}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </motion.section>
