@@ -101,29 +101,43 @@ const objectives = [
 
 const literature = [
   {
-    title: "AI–IoT Therapy Systems",
-    body: "IoT-enabled smart devices and robotic systems improve engagement through interactive feedback, but lack language-specific adaptation and home support.",
+    title: "A. AI–IoT Robot Toy for Phonology Training",
+    body: "Prior Sinhala-focused work (Katha) shows localized speech analysis supports early detection and corrective feedback with child-oriented design [1]. Child ASR research consistently reports degraded accuracy due to acoustic and linguistic differences in children's speech [2]. IoT smart toys such as AuToy demonstrate home-extendable therapy continuity [3], and Raspberry Pi–based robot companions confirm on-device orchestration feasibility for child-centred speech activities [4].",
+    refs: [[1,"Wijesooriya et al., ICAC 2023"],[2,"Shraddha et al., CONIT 2022"],[3,"Miranda et al., INDUSCON 2023"],[4,"Oyuela & Paz, CONESCAPAN 2023"]],
   },
   {
-    title: "Child Speech Recognition (ASR)",
-    body: "Recognising children's speech is challenging due to variations in pitch and articulation. Child-specific phoneme-level ASR significantly improves accuracy.",
+    title: "B. Personalized Phonology Therapy Generation",
+    body: "The Katha App used SVC and LSTM to diagnose Sinhala phonological disorders, showing record management bridges home and clinical practice [1]. NAO-based socially assistive robots reveal potential for low-resource language interaction without fatigue [5][6]. Gamified speech therapy via transformer models achieved 83 % phoneme accuracy, with auditory feedback as a key engagement driver [7].",
+    refs: [[1,"Wijesooriya et al., ICAC 2023"],[5,"Jayawardena et al., SCSE 2025"],[6,"Vithana et al., ICACRS 2022"],[7,"Syam et al., ICCIRT 2024"]],
   },
   {
-    title: "Phonological Error Detection",
-    body: "Lightweight, optimised models such as SVM-RBF deliver practical real-time performance compared to heavier transformer alternatives.",
+    title: "C. Phonological Pronunciation Issue Detection",
+    body: "Computerised tools like CAPP-M reduce labour and subjectivity over manual transcription in phonological error classification for Malayalam [8]. Data augmentation on Filipino kindergartener ASR improved accuracy by 5.16 % [9]. End-to-end Mandarin models achieved 91.64 % via attention mechanisms integrating linguistic and acoustic features [10]. Tangible gamified interactions enhance child engagement beyond static assessment reports [11].",
+    refs: [[8,"Sreedevi et al., IEEE 2013"],[9,"Maranan, O-COCOSDA 2022"],[10,"Hsiao et al., IEEE TIM 2024"],[11,"Oliva-Maza et al., IEEE RITA 2021"]],
   },
   {
-    title: "Personalised Therapy Generation",
-    body: "Knowledge graphs and rule-based systems generate targeted exercises adapted to each child's specific phonological errors.",
+    title: "D. RAG-Based Parent Awareness System",
+    body: "Katha enables parent-involved phonological disorder identification through non-interactive child-development discussions [1]. StutterAI detects stuttering and generates reports but lacks a contextual virtual assistant [12]. Meleti provides passive performance visualisation with no AI-assisted clinical synthesis [13]. AutiTEACCH offers fixed educator content without personalisation [14], and Tommy & Minoi used parents as sole intervention without a caregiver technology interface [15].",
+    refs: [[1,"Wijesooriya et al., ICAC 2023"],[12,"Benthota Arachchi et al., ICAC 2023"],[13,"Kyriacou et al., IEEE BIBE 2013"],[14,"Shminan et al., ICIMCIS 2020"],[15,"Tommy & Minoi, IECBES 2016"]],
   },
-  {
-    title: "Parent Awareness Systems",
-    body: "Modern RAG-based assistants deliver personalised insights, progress tracking and actionable guidance for caregivers.",
-  },
-  {
-    title: "Mobile Therapy Applications",
-    body: "Mobile platforms with real-time AI feedback and gamified learning bridge clinical therapy and home practice effectively.",
-  },
+] as { title: string; body: string; refs: [number, string][] }[];
+
+const paperRefs = [
+  `[1]  W. M. R. K. Wijesooriya et al., \u201cKatha App: Sinhala Phonological Disorder Detection and Treatment in Early Childhood,\u201d ICAC 2023.`,
+  `[2]  S. Shraddha, J. G. Lal and S. S. Kumar, \u201cChild Speech Recognition on End-to-End Neural ASR Models,\u201d CONIT 2022.`,
+  `[3]  L. B. Miranda et al., \u201cAutoy: Adaptive and reconfigurable IoT toy for autistic children,\u201d INDUSCON 2023.`,
+  `[4]  F. Z. Oyuela and \u00d3. A. Paz, \u201cAI-powered backup robot designed to enhance cognitive abilities in children with Down syndrome,\u201d CONESCAPAN 2023.`,
+  `[5]  A. Jayawardena, K. Pulasinghe and S. Rajapakshe, \u201cAdvancing Speech Therapy for Sinhala-Speaking Children with ASD Through an Intelligent Dialog System,\u201d SCSE 2025.`,
+  `[6]  K. Vithana et al., \u201cMiMi: Sinhala Language Speech Assistive Learning Bot to Support Children with Stuttering,\u201d ICACRS 2022.`,
+  `[7]  N. E. Syam et al., \u201cSpeech Therapy Assistance through Gamification,\u201d ICCIRT 2024.`,
+  `[8]  N. Sreedevi, M. John and S. Chandran, \u201cComputerized Assessment of Phonological Processes in Malayalam (CAPP-M),\u201d IEEE 2013.`,
+  `[9]  J. R. Maranan, \u201cAn Automated Speech Recognition System for Phonological Awareness of Kindergarten Students in Filipino,\u201d O-COCOSDA 2022.`,
+  `[10] C.-H. Hsiao et al., \u201cA Text-Dependent End-to-End Speech Sound Disorder Detection and Diagnosis in Mandarin-Speaking Children,\u201d IEEE TIM 2024.`,
+  `[11] A. Oliva-Maza et al., \u201cMystery of the Runaway Letrabytes: Inclusive Assessment of Phonological Awareness With Tangible Gamification,\u201d IEEE RITA 2021.`,
+  `[12] B. Benthota Arachchi et al., \u201cStutterAI: Virtual Assistant for Stutter Detection and Analysis Through ML and NLP,\u201d ICAC 2023.`,
+  `[13] E. Kyriacou et al., \u2018\u2018Meleti\u2019\u2019 Speech and Language Development Support System,\u201d IEEE BIBE 2013.`,
+  `[14] A. S. Shminan, L. J. Choi and S. Sharif, \u201cAutiTEACCH: Mobile-based Learning in a Structured Teaching Approach for Autistic Children Caregivers,\u201d ICIMCIS 2020.`,
+  `[15] C. A. Tommy and J.-L. Minoi, \u201cSpeech Therapy Mobile Application for Speech and Language Impairment Children,\u201d IECBES 2016.`,
 ];
 
 const scopeCards = [
@@ -199,8 +213,8 @@ const documents = [
   { label: "Research Paper — April 2026", url: "https://drive.google.com/file/d/15FKfdFjwk3nsGXlNZEYEMPqB0fILFNh2/view?usp=sharing" },
   { label: "Project Checklist 1", url: "/checklist-1/README.md" },
   { label: "Project Checklist 2 — MS Planner", url: "/checklist-2/HURUWA-MSPlanner.xlsx" },
-  { label: "Final Report — Pending", url: null },
-  { label: "Poster — Pending", url: null },
+  { label: "Final Report — May 2026", url: "https://drive.google.com/file/d/1LvaDVrRRiv-wwU-ruB8RhfMgmjMdm2EN/view?usp=sharing" },
+  { label: "Presentation — May 2026", url: "https://drive.google.com/file/d/1VKRr_bCKz69zQIMe1asJgY3yPo2jZHYB/view?usp=sharing" },
 ];
 
 export default function Home() {
@@ -613,24 +627,30 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {literature.map((item, i) => (
+          <div className="mt-14 grid gap-5 md:grid-cols-2">
+            {literature.map((item) => (
               <motion.div
                 key={item.title}
                 className="feature-card"
                 variants={fadeInUp}
               >
-                <div className="flex items-center gap-3">
-                  <span className="grid h-9 w-9 place-items-center rounded-xl bg-brand-100 font-display text-sm font-bold text-brand-700 dark:bg-brand-500/15 dark:text-brand-200">
-                    0{i + 1}
-                  </span>
-                  <h3 className="font-display text-lg font-bold text-slate-900 dark:text-white">
-                    {item.title}
-                  </h3>
-                </div>
+                <h3 className="font-display text-lg font-bold text-slate-900 dark:text-white">
+                  {item.title}
+                </h3>
                 <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
                   {item.body}
                 </p>
+                <div className="mt-4 flex flex-wrap gap-1.5">
+                  {item.refs.map(([num, label]) => (
+                    <span
+                      key={num}
+                      title={label as string}
+                      className="inline-flex cursor-default items-center rounded-full bg-brand-50 px-2.5 py-0.5 text-[11px] font-semibold text-brand-700 ring-1 ring-brand-200 dark:bg-brand-500/10 dark:text-brand-300 dark:ring-brand-500/30"
+                    >
+                      [{num}]
+                    </span>
+                  ))}
+                </div>
               </motion.div>
             ))}
           </div>
@@ -647,12 +667,26 @@ export default function Home() {
               </h3>
             </div>
             <p className="mt-4 leading-relaxed text-slate-700 dark:text-slate-200">
-              Existing systems struggle to recognise children's speech in
+              Existing systems struggle to recognise children’s speech in
               low-resource languages, often lack real-time adaptive feedback,
               and offer limited integration between clinical sessions and home
               practice — leaving therapists, children and caregivers
               disconnected.
             </p>
+          </div>
+
+          {/* References list */}
+          <div className="mt-10 rounded-3xl border border-slate-200 bg-white p-6 shadow-card dark:border-slate-800 dark:bg-slate-900/60 md:p-8">
+            <h3 className="font-display text-base font-bold text-slate-900 dark:text-white">
+              References
+            </h3>
+            <ol className="mt-4 space-y-2">
+              {paperRefs.map((ref) => (
+                <li key={ref} className="text-[12px] leading-relaxed text-slate-600 dark:text-slate-400">
+                  {ref}
+                </li>
+              ))}
+            </ol>
           </div>
         </div>
       </motion.section>

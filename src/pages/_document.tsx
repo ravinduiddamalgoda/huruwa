@@ -16,10 +16,11 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
+        <title>Huruwa: An AI-IoT Robotic System for Adaptive Speech Therapy and Parental Support for Sinhala-Speaking Children with Speech Sound Disorders</title>
         <meta name="theme-color" content="#0a5eea" />
         <meta
           name="description"
-          content="Huruwa (හුරුව) — An AI-IoT robotic system for adaptive Sinhala speech therapy and parental support."
+          content="Huruwa (හුරුව) — An AI-IoT Robotic System for Adaptive Speech Therapy and Parental Support for Sinhala-Speaking Children with Speech Sound Disorders. Integrating LLM-guided conversation, phoneme-adaptive exercises, SVM-RBF error detection, knowledge-graph therapy generation and a RAG-based parent guidance system."
         />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
         <link rel="shortcut icon" type="image/svg+xml" href="/favicon.svg?v=2" />
