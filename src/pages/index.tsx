@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { useTheme } from "../lib/theme";
 import HuruwaLogo from "../components/HuruwaLogo";
@@ -210,6 +210,27 @@ export default function Home() {
   const { theme, toggle } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [formSent, setFormSent] = useState(false);
+  const nameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const subjectRef = useRef<HTMLInputElement>(null);
+  const messageRef = useRef<HTMLTextAreaElement>(null);
+
+  const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const name = nameRef.current?.value.trim() ?? "";
+    const from = emailRef.current?.value.trim() ?? "";
+    const subject = subjectRef.current?.value.trim() || "Message from Huruwa website";
+    const body = [
+      `Name: ${name}`,
+      `Email: ${from}`,
+      "",
+      messageRef.current?.value.trim() ?? "",
+    ].join("\n");
+    const mailto = `mailto:ravinduiddamalgoda55@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
+    setFormSent(true);
+  }, []);
   const showcaseImages = [Fish1, Fish2, Fish3, Fish4];
   const [currentShowcase, setCurrentShowcase] = useState(0);
 
@@ -1261,61 +1282,79 @@ export default function Home() {
                 hello? We'd love to hear from you.
               </p>
               <div className="space-y-3 pt-2">
-                <div className="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-200">
-                  <span className="grid h-9 w-9 place-items-center rounded-xl bg-brand-100 text-brand-700 dark:bg-brand-500/15 dark:text-brand-200">
+                <a
+                  href="mailto:ravinduiddamalgoda55@gmail.com"
+                  className="flex items-center gap-3 text-sm text-slate-700 transition-colors hover:text-brand-600 dark:text-slate-200 dark:hover:text-brand-300"
+                >
+                  <span className="grid h-9 w-9 flex-shrink-0 place-items-center rounded-xl bg-brand-100 text-brand-700 dark:bg-brand-500/15 dark:text-brand-200">
                     <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                       <polyline points="22,6 12,13 2,6" />
                     </svg>
                   </span>
-                  harshana.aberathne@gmail.com
-                </div>
-                <div className="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-200">
-                  <span className="grid h-9 w-9 place-items-center rounded-xl bg-brand-100 text-brand-700 dark:bg-brand-500/15 dark:text-brand-200">
+                  ravinduiddamalgoda55@gmail.com
+                </a>
+                <a
+                  href="tel:+94771150785"
+                  className="flex items-center gap-3 text-sm text-slate-700 transition-colors hover:text-brand-600 dark:text-slate-200 dark:hover:text-brand-300"
+                >
+                  <span className="grid h-9 w-9 flex-shrink-0 place-items-center rounded-xl bg-brand-100 text-brand-700 dark:bg-brand-500/15 dark:text-brand-200">
                     <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.37 1.9.72 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0122 16.92z" />
                     </svg>
                   </span>
-                  +94 77 951 6084
-                </div>
+                  +94 77 115 0785
+                </a>
                 <div className="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-200">
-                  <span className="grid h-9 w-9 place-items-center rounded-xl bg-brand-100 text-brand-700 dark:bg-brand-500/15 dark:text-brand-200">
+                  <span className="grid h-9 w-9 flex-shrink-0 place-items-center rounded-xl bg-brand-100 text-brand-700 dark:bg-brand-500/15 dark:text-brand-200">
                     <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
                       <circle cx="12" cy="10" r="3" />
                     </svg>
                   </span>
-                  67/2, Gamunupura 1st Lane, Kaduwela, Sri Lanka
+                  Kaduwela, Sri Lanka
                 </div>
               </div>
             </div>
 
-            <form className="md:col-span-7 rounded-3xl border border-slate-200 bg-white p-6 shadow-card dark:border-slate-800 dark:bg-slate-900/60 md:p-10">
+            <form
+              onSubmit={handleSubmit}
+              className="md:col-span-7 rounded-3xl border border-slate-200 bg-white p-6 shadow-card dark:border-slate-800 dark:bg-slate-900/60 md:p-10"
+            >
+              {formSent && (
+                <div className="mb-6 flex items-center gap-3 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm font-medium text-emerald-700 dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-300">
+                  <svg className="h-5 w-5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+                    <polyline points="22 4 12 14.01 9 11.01" />
+                  </svg>
+                  Your mail client has been opened — please send the pre-filled email.
+                </div>
+              )}
               <div className="grid gap-5 sm:grid-cols-2">
                 <div>
                   <label htmlFor="name" className="mb-2 block text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">
                     Name
                   </label>
-                  <input id="name" type="text" placeholder="Your name" className="input-modern" />
+                  <input ref={nameRef} id="name" type="text" placeholder="Your name" required className="input-modern" />
                 </div>
                 <div>
                   <label htmlFor="email" className="mb-2 block text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">
                     Email
                   </label>
-                  <input id="email" type="email" placeholder="you@example.com" className="input-modern" />
+                  <input ref={emailRef} id="email" type="email" placeholder="you@example.com" required className="input-modern" />
                 </div>
               </div>
               <div className="mt-5">
                 <label htmlFor="subject" className="mb-2 block text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">
                   Subject
                 </label>
-                <input id="subject" type="text" placeholder="What's this about?" className="input-modern" />
+                <input ref={subjectRef} id="subject" type="text" placeholder="What's this about?" className="input-modern" />
               </div>
               <div className="mt-5">
                 <label htmlFor="message" className="mb-2 block text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">
                   Message
                 </label>
-                <textarea id="message" rows={5} placeholder="Tell us a bit more..." className="input-modern resize-none" />
+                <textarea ref={messageRef} id="message" rows={5} placeholder="Tell us a bit more..." required className="input-modern resize-none" />
               </div>
               <button type="submit" className="btn-primary mt-6 w-full sm:w-auto">
                 Send message
@@ -1378,10 +1417,18 @@ export default function Home() {
               <h4 className="font-display text-sm font-semibold uppercase tracking-widest text-white">
                 Contact
               </h4>
-              <ul className="mt-4 space-y-2.5 text-sm text-slate-400">
-                <li>harshana.aberathne@gmail.com</li>
-                <li>+94 77 951 6084</li>
-                <li>Kaduwela, Sri Lanka</li>
+              <ul className="mt-4 space-y-2.5 text-sm">
+                <li>
+                  <a href="mailto:ravinduiddamalgoda55@gmail.com" className="text-slate-400 transition-colors hover:text-white">
+                    ravinduiddamalgoda55@gmail.com
+                  </a>
+                </li>
+                <li>
+                  <a href="tel:+94771150785" className="text-slate-400 transition-colors hover:text-white">
+                    +94 77 115 0785
+                  </a>
+                </li>
+                <li className="text-slate-400">Kaduwela, Sri Lanka</li>
               </ul>
             </div>
           </div>
