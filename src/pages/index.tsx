@@ -3,10 +3,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { useTheme } from "../lib/theme";
 import HuruwaLogo from "../components/HuruwaLogo";
-import Fish1 from "../asset/1.jpeg";
-import Fish2 from "../asset/2.jpeg";
-import Fish3 from "../asset/3.jpeg";
-import Fish4 from "../asset/4.jpeg";
+import RobotToy from "../components/RobotToy";
 import Member1 from "../asset/team/1.jpeg";
 import Member2 from "../asset/team/2.png";
 import Member3 from "../asset/team/3.jpeg";
@@ -231,17 +228,6 @@ export default function Home() {
     window.location.href = mailto;
     setFormSent(true);
   }, []);
-  const showcaseImages = [Fish1, Fish2, Fish3, Fish4];
-  const [currentShowcase, setCurrentShowcase] = useState(0);
-
-  useEffect(() => {
-    const t = setTimeout(
-      () => setCurrentShowcase((p) => (p + 1) % showcaseImages.length),
-      4500
-    );
-    return () => clearTimeout(t);
-  }, [currentShowcase, showcaseImages.length]);
-
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
     onScroll();
@@ -460,58 +446,46 @@ export default function Home() {
 
             <motion.div
               variants={heroChild}
-              className="md:col-span-5"
+              className="md:col-span-5 relative flex items-center justify-center py-16"
             >
-              <div className="relative mx-auto aspect-[4/5] w-full max-w-md">
-                <div className="absolute inset-0 -z-10 rounded-[2.5rem] bg-gradient-to-br from-brand-500/30 via-brand-300/20 to-accent-300/30 blur-2xl" />
-                <div className="relative h-full w-full overflow-hidden rounded-[2.25rem] border border-white/40 bg-white/40 shadow-card backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/30">
-                  <AnimatePresence mode="wait">
-                    <motion.img
-                      key={currentShowcase}
-                      src={showcaseImages[currentShowcase].src}
-                      alt={`Huruwa showcase ${currentShowcase + 1}`}
-                      className="absolute inset-0 h-full w-full object-cover"
-                      initial={{ opacity: 0, scale: 1.06 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 1.04 }}
-                      transition={{ duration: 1.1, ease: "easeInOut" }}
-                    />
-                  </AnimatePresence>
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/30 via-transparent to-transparent" />
-                </div>
+              {/* ambient glow behind robot */}
+              <div className="pointer-events-none absolute inset-0 -z-10 scale-[1.5] rounded-full bg-gradient-to-br from-brand-400/25 via-brand-200/15 to-accent-300/20 blur-3xl" />
 
-                <motion.div
-                  className="absolute -left-6 bottom-12 hidden rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-card backdrop-blur dark:border-slate-700 dark:bg-slate-900/90 sm:flex sm:items-center sm:gap-3"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6, duration: 0.7 }}
-                >
-                  <span className="grid h-10 w-10 place-items-center rounded-xl bg-brand-100 text-brand-700 dark:bg-brand-500/15 dark:text-brand-200">
-                    <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 1v22M5 8a7 7 0 1014 0" /></svg>
+              <RobotToy />
+
+              {/* floating card: live phoneme — anchored below-left of the column */}
+              <motion.div
+                className="absolute bottom-4 left-0 hidden rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-card backdrop-blur dark:border-slate-700 dark:bg-slate-900/90 sm:flex sm:items-center sm:gap-3"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.6, duration: 0.7 }}
+              >
+                <span className="grid h-10 w-10 flex-shrink-0 place-items-center rounded-xl bg-brand-100 text-brand-700 dark:bg-brand-500/15 dark:text-brand-200">
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 1v22M5 8a7 7 0 1014 0" /></svg>
+                </span>
+                <div className="flex flex-col leading-tight">
+                  <span className="text-xs text-slate-500 dark:text-slate-400">Live phoneme</span>
+                  <span className="font-display text-sm font-bold text-slate-900 dark:text-slate-200">
+                    /sa/ → 96% match
                   </span>
-                  <div className="flex flex-col leading-tight">
-                    <span className="text-xs text-slate-500 dark:text-slate-400">Live phoneme</span>
-                    <span className="font-display text-sm font-bold text-slate-900 dark:text-slate-200">
-                      /sa/ → 96% match
-                    </span>
-                  </div>
-                </motion.div>
+                </div>
+              </motion.div>
 
-                <motion.div
-                  className="absolute -right-6 top-10 hidden rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-card backdrop-blur dark:border-slate-700 dark:bg-slate-900/90 sm:block"
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8, duration: 0.7 }}
-                >
-                  <div className="flex items-center gap-2 text-xs font-medium text-emerald-600 dark:text-emerald-400">
-                    <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-500" />
-                    Therapy session active
-                  </div>
-                  <div className="mt-1 font-display text-sm font-bold text-slate-900 dark:text-slate-200">
-                    Story · සතුන්ගේ ලෝකය
-                  </div>
-                </motion.div>
-              </div>
+              {/* floating card: session active — anchored top-right of the column */}
+              <motion.div
+                className="absolute top-4 right-0 hidden rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-card backdrop-blur dark:border-slate-700 dark:bg-slate-900/90 sm:block"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.8, duration: 0.7 }}
+              >
+                <div className="flex items-center gap-2 text-xs font-medium text-emerald-600 dark:text-emerald-400">
+                  <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-500" />
+                  Therapy session active
+                </div>
+                <div className="mt-1 font-display text-sm font-bold text-slate-900 dark:text-slate-200">
+                  Story · සතුන්ගේ ලෝකය
+                </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
