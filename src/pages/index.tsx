@@ -204,7 +204,7 @@ const presentations = [
   { label: "Proposal Presentation — January 2026", url: "https://canva.link/33ug44972d033wx" },
   { label: "Progress Presentation 1 — January 2026", url: "https://canva.link/j47v574zelk1f4e" },
   { label: "Progress Presentation 2 — March 2026", url: "https://canva.link/h2iuz05qr4ln3ow" },
-  { label: "Final Presentation — Pending", url: null },
+  { label: "Final Presentation ", url: "https://drive.google.com/file/d/1VKRr_bCKz69zQIMe1asJgY3yPo2jZHYB/view?usp=sharing" },
 ];
 
 const documents = [
@@ -213,8 +213,7 @@ const documents = [
   { label: "Research Paper — April 2026", url: "https://drive.google.com/file/d/15FKfdFjwk3nsGXlNZEYEMPqB0fILFNh2/view?usp=sharing" },
   { label: "Project Checklist 1", url: "/checklist-1/README.md" },
   { label: "Project Checklist 2 — MS Planner", url: "/checklist-2/HURUWA-MSPlanner.xlsx" },
-  { label: "Final Report — May 2026", url: "https://drive.google.com/file/d/1LvaDVrRRiv-wwU-ruB8RhfMgmjMdm2EN/view?usp=sharing" },
-  { label: "Final Presentation — May 2026", url: "https://drive.google.com/file/d/1VKRr_bCKz69zQIMe1asJgY3yPo2jZHYB/view?usp=sharing" },
+  { label: "Final Report — May 2026", url: "https://drive.google.com/file/d/1LvaDVrRRiv-wwU-ruB8RhfMgmjMdm2EN/view?usp=sharing" }
 ];
 
 export default function Home() {
