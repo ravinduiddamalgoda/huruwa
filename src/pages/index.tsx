@@ -416,8 +416,8 @@ export default function Home() {
                 variants={heroChild}
                 className="font-display text-5xl font-bold leading-[1.05] tracking-tight text-slate-900 dark:text-slate-200 md:text-7xl"
               >
-                Helping every child{" "}
-                <span className="gradient-heading">find their voice.</span>
+               Huruwa: An AI-IoT Robotic System for Adaptive Speech Therapy and Parental
+                <span className="gradient-heading"> Support for Sinhala-Speaking Children with Speech Sound Disorders.</span>
               </motion.h1>
 
               <motion.p
