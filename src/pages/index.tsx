@@ -213,7 +213,11 @@ const documents = [
   { label: "Research Paper — April 2026", url: "https://drive.google.com/file/d/15FKfdFjwk3nsGXlNZEYEMPqB0fILFNh2/view?usp=sharing" },
   { label: "Project Checklist 1", url: "/checklist-1/README.md" },
   { label: "Project Checklist 2 — MS Planner", url: "/checklist-2/HURUWA-MSPlanner.xlsx" },
-  { label: "Final Report — May 2026", url: "https://drive.google.com/file/d/1LvaDVrRRiv-wwU-ruB8RhfMgmjMdm2EN/view?usp=sharing" }
+  { label: "Final Report — May 2026", url: "https://drive.google.com/file/d/1JkRk2LcjUdqxFMolFTh1oR6bKNsmDc9a/view?usp=sharing" },
+  { label: "Individual Report — IT22925336", url: "https://docs.google.com/document/d/1d2Hs8qHy6UNbNlRRNpRM1-PuuG_nv2VR/edit?usp=sharing&ouid=117971624808512280150&rtpof=true&sd=true" },
+  { label: "Individual Report — IT22369956", url: "https://drive.google.com/file/d/1T6dTNUq-9hasG5kKuk8eBY8HMlipiR3J/view?usp=sharing" },
+  { label: "Individual Report — IT22352194", url: "https://drive.google.com/file/d/12TrOlmMQZpNlyW8y-nIE9WzmPYhGvHoq/view?usp=sharing" },
+  { label: "Individual Report — IT22304988", url: "https://drive.google.com/file/d/1ywY1Kmu6m1q4hHXJ1denrRWuOYld7jSN/view?usp=sharing" },
 ];
 
 export default function Home() {
