@@ -214,7 +214,7 @@ const documents = [
   { label: "Project Checklist 1", url: "/checklist-1/README.md" },
   { label: "Project Checklist 2 — MS Planner", url: "/checklist-2/HURUWA-MSPlanner.xlsx" },
   { label: "Final Report — May 2026", url: "https://drive.google.com/file/d/1LvaDVrRRiv-wwU-ruB8RhfMgmjMdm2EN/view?usp=sharing" },
-  { label: "Presentation — May 2026", url: "https://drive.google.com/file/d/1VKRr_bCKz69zQIMe1asJgY3yPo2jZHYB/view?usp=sharing" },
+  { label: "Final Presentation — May 2026", url: "https://drive.google.com/file/d/1VKRr_bCKz69zQIMe1asJgY3yPo2jZHYB/view?usp=sharing" },
 ];
 
 export default function Home() {
